@@ -1,0 +1,79 @@
+1.humlog yaha pr real time code editor colaborative app bana rahai hai
+2.frontend folder create karoo
+
+npm create vite@7 .
+npm i
+
+3.index.css,assest delete karoo
+4.create a folder app and put app.css and app.jsx into it 
+5.app.css clear karoo ,app.jsx mai
+
+
+function App() {
+ return(
+  <></>
+ )
+}
+
+export default App
+
+bas itna rakhoo
+
+6.npm run dev
+7.set tailwind
+step1 npm i tailwindcss @tailwindcss/vite
+step-2 vite.config.js mai jaoo
+import tailwindcss from "@tailwindcss/vite"
+step-3 plugin mai tailwindcss() daal dena
+  plugins: [react(),tailwindcss()],
+
+step-4 app.css mai
+@import "tailwindcss"
+
+7.start writing code in app,jsx 
+pehlai ui banaoo
+
+
+8. import "./App.css"
+
+function App() {
+ return(
+  <>
+  <main className="h-screen w-full bg-gray-950 flex gap-4 p-4">
+
+    <aside className="h-full w-1/4 bg-amber-300  rounded-lg"></aside>
+
+    <section className="w-3/4 bg-neutral-800 rounded-lg"></section>
+  </main>
+  </>
+ )
+}
+
+export default App
+
+
+9.monacco editor install kr 
+npm i @monaco-editor/react
+
+10.app.jsx mai
+import { Editor } from "@monaco-editor/react"
+
+11.user listing kai liye yjs use kregai
+12.server create karoo
+folder banaoo backend name kaa
+cd backend
+npm init -y 
+npm i express socket.io y-socket.io 
+
+13.package.json mai 
+type:module karoo
+
+14.socket io express support nahi krta issiliye humlog createserver sai server create kregai
+15.server.js ka code likh
+
+16.frontend mai aa
+install kr kuch packages kooo
+
+npm i y-monaco y-socket.io yjs
+
+
