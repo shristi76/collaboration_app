@@ -8,11 +8,11 @@ import { SocketIOProvider } from "y-socket.io";
 function App() {
   const editorRef = useRef(null);
 
-  // ✅ fixed useState
+  // fixed useState
   const [username, setUsername] = useState("");
   const [users, setUsers] = useState([]);
 
-  // ✅ load username from URL on refresh
+  // load username from URL on refresh
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const name = params.get("username");
@@ -55,7 +55,7 @@ function App() {
     provider.awareness.on("change", updateUsers);
     updateUsers(); // Initial update
 
-    // ✅ cleanup to avoid memory leaks
+    // cleanup to avoid memory leaks
     editor.onDidDispose(() => {
       binding.destroy();
       provider.destroy();
@@ -68,35 +68,44 @@ function App() {
 
     setUsername(name);
 
-    // ✅ persist in URL
+    // persist in URL
     window.history.pushState({}, "", "?username=" + name);
   };
 
-  // ✅ join screen
+  // join screen
   if (!username) {
-    return (
-      <main className="h-screen w-full bg-gray-950 flex items-center justify-center">
-        <form onSubmit={handleJoin} className="flex flex-col gap-4">
-          <input
-            type="text"
-            placeholder="Enter your username"
-            className="p-2 rounded-lg bg-gray-800 text-white"
-            name="username"
-            required
-          />
+  return (
+    <main className="h-screen w-full bg-gray-950 flex flex-col items-center justify-center gap-6">
+      
+      <h1 className="text-white text-3xl font-semibold">
+        SyncSpace
+      </h1>
 
-          <button
-            type="submit"
-            className="p-2 rounded-lg bg-gray-200 text-black"
-          >
-            Join
-          </button>
-        </form>
-      </main>
-    );
-  }
+      <form
+        onSubmit={handleJoin}
+        className="flex flex-col gap-4 w-72"
+      >
+        <input
+          type="text"
+          placeholder="Enter your username"
+          className="p-3 rounded-lg bg-gray-800 text-white outline-none focus:ring-2 focus:ring-gray-500"
+          name="username"
+          required
+        />
 
-  // ✅ main editor UI
+        <button
+          type="submit"
+          className="p-3 rounded-lg bg-gray-200 text-black font-medium hover:bg-gray-300 transition"
+        >
+          Join
+        </button>
+      </form>
+
+    </main>
+  );
+}
+
+  // main editor UI
   return (
     <main className="h-screen w-full bg-gray-950 flex gap-4 p-4">
       <aside className="h-full w-1/4 bg-amber-300 rounded-lg p-4">
