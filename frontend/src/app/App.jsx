@@ -10,6 +10,7 @@ function App() {
 
   // ✅ fixed useState
   const [username, setUsername] = useState("");
+  const [users, setUsers] = useState([]);
 
   // ✅ load username from URL on refresh
   useEffect(() => {
@@ -38,6 +39,21 @@ function App() {
       new Set([editorRef.current]),
       provider.awareness
     );
+
+    // Set local user
+    provider.awareness.setLocalStateField("user", { name: username });
+
+    // Subscribe to awareness changes
+    const updateUsers = () => {
+      const states = provider.awareness.getStates();
+      const userList = Array.from(states.values())
+        .map(state => state.user?.name)
+        .filter(name => name);
+      setUsers(userList);
+    };
+
+    provider.awareness.on("change", updateUsers);
+    updateUsers(); // Initial update
 
     // ✅ cleanup to avoid memory leaks
     editor.onDidDispose(() => {
@@ -83,8 +99,16 @@ function App() {
   // ✅ main editor UI
   return (
     <main className="h-screen w-full bg-gray-950 flex gap-4 p-4">
-      <aside className="h-full w-1/4 bg-amber-300 rounded-lg flex items-center justify-center">
-        <p className="font-semibold">👤 {username}</p>
+      <aside className="h-full w-1/4 bg-amber-300 rounded-lg p-4">
+        <h2 className="text-lg font-bold mb-4">Active Users</h2>
+        <ul className="space-y-2">
+          {users.map((user, index) => (
+            <li key={index} className="flex items-center gap-2">
+              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+              <span className="font-semibold">{user}</span>
+            </li>
+          ))}
+        </ul>
       </aside>
 
       <section className="w-3/4 bg-neutral-800 rounded-lg">
