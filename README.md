@@ -1,4 +1,4 @@
-# Collaborative Code Editor
+# Collaborative  doc Editor
 
 A real-time collaborative code editor built with React, Monaco Editor, Yjs, and Socket.IO.
 
@@ -57,7 +57,16 @@ docker-compose up --build
 
 Frontend will be available at http://localhost
 
-## Usage
+## Demo
+
+<img width="1912" height="918" alt="Screenshot 2026-05-04 220017" src="https://github.com/user-attachments/assets/2d6adb3d-1153-4203-85eb-94b39c78786f" />
+
+---
+
+<img width="1888" height="948" alt="Screenshot 2026-05-04 220328" src="https://github.com/user-attachments/assets/d466f3f7-8b74-4e8c-b14e-6f07afbdec25" />
+
+---
+Thank you
 
 1. Enter a username to join
 2. Start editing code - changes will sync in real-time
